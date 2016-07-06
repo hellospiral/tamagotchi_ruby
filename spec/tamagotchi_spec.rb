@@ -29,7 +29,7 @@ describe(Tamagotchi) do
   describe("#time_passes") do
     it("decreases the amount of food the Tamagotchi has left by 1") do
       my_pet = Tamagotchi.new("lil dragon")
-      my_pet.time_passes()  #decide what trigger you will use to make time pass
+      my_pet.time_passes(1)  #decide what trigger you will use to make time pass
       expect(my_pet.food()).to(eq(40))
     end
   end
