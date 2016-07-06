@@ -33,10 +33,12 @@ actions.each() do |act|
       @activity = @tamagotchi.activity()
       Tamagotchi.reset_all()
       @tamagotchi.save()
+      erb(:tamagotchi)
     else
-    @name = @tamagotchi.name()
+      @name = @tamagotchi.name()
+      erb(:dead)
     end
-    erb(:tamagotchi)')
+    ')
   end
 end
 
@@ -53,9 +55,11 @@ get_request.each() do |act|
       @activity = @tamagotchi.activity()
       Tamagotchi.reset_all()
       @tamagotchi.save()
+      erb(:tamagotchi)
     else
-    @name = @tamagotchi.name()
+      @name = @tamagotchi.name()
+      erb(:dead)
     end
-    erb(:tamagotchi)')
+    ')
   end
 end

@@ -1,5 +1,5 @@
 <meta http-equiv="refresh" content="2">
-<% if @tamagotchi.is_alive?() %>
+
 <h2><%= @name %></h2>
 <p>Food Level is: <%= @food %></p>
 <p>Sleep Level is: <%= @sleep %></p>
@@ -16,8 +16,3 @@
 <form action="/activity" method="post">
   <button type="submit" name="activity">Play</button>
 </form>
-<% else %>
-<h2>
-  <%= @name %> is DEAD
-</h2>
-<% end %>
