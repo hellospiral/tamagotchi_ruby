@@ -19,56 +19,23 @@ post('/tamagotchi') do
   erb(:tamagotchi)
 end
 
-post('/feed') do
-  @tamagotchi = Tamagotchi.all[0]
-  @tamagotchi.time_passes(Tamagotchi.time_interval())
-  Tamagotchi.set_last_active()
-  if @tamagotchi.is_alive?()
-    @tamagotchi.set_food_level(10)
+actions = ['food', 'sleep', 'activity']
+actions.each() do |act|
+  post('/' + act) do
+    eval('@tamagotchi = Tamagotchi.all[0]
+    @tamagotchi.time_passes(Tamagotchi.time_interval())
+    Tamagotchi.set_last_active()
+    if @tamagotchi.is_alive?()
+      @tamagotchi.set_' + act + '_level(10)
+      @name = @tamagotchi.name()
+      @food = @tamagotchi.food()
+      @sleep = @tamagotchi.sleep()
+      @activity = @tamagotchi.activity()
+      Tamagotchi.reset_all()
+      @tamagotchi.save()
+    else
     @name = @tamagotchi.name()
-    @food = @tamagotchi.food()
-    @sleep = @tamagotchi.sleep()
-    @activity = @tamagotchi.activity()
-    Tamagotchi.reset_all()
-    @tamagotchi.save()
-  else
-  @name = @tamagotchi.name()
+    end
+    erb(:tamagotchi)')
   end
-  erb(:tamagotchi)
-end
-
-post('/sleep') do
-  @tamagotchi = Tamagotchi.all[0]
-  @tamagotchi.time_passes(Tamagotchi.time_interval())
-  Tamagotchi.set_last_active()
-  if @tamagotchi.is_alive?()
-    @tamagotchi.set_sleep_level(10)
-    @name = @tamagotchi.name()
-    @food = @tamagotchi.food()
-    @sleep = @tamagotchi.sleep()
-    @activity = @tamagotchi.activity()
-    Tamagotchi.reset_all()
-    @tamagotchi.save()
-  else
-  @name = @tamagotchi.name()
-  end
-  erb(:tamagotchi)
-end
-
-post('/activity') do
-  @tamagotchi = Tamagotchi.all[0]
-  @tamagotchi.time_passes(Tamagotchi.time_interval())
-  Tamagotchi.set_last_active()
-  if @tamagotchi.is_alive?()
-    @tamagotchi.set_activity_level(10)
-    @name = @tamagotchi.name()
-    @food = @tamagotchi.food()
-    @sleep = @tamagotchi.sleep()
-    @activity = @tamagotchi.activity()
-    Tamagotchi.reset_all()
-    @tamagotchi.save()
-  else
-  @name = @tamagotchi.name()
-  end
-  erb(:tamagotchi)
 end

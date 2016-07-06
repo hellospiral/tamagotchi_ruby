@@ -1,6 +1,6 @@
 class Tamagotchi
   @@all_tamagotchi = []
-  @@last_active = Time.now.to_i
+  @@last_active = nil
   define_method(:initialize) do |name|
     @name = name
     @food = 50
