@@ -39,3 +39,23 @@ actions.each() do |act|
     erb(:tamagotchi)')
   end
 end
+
+get_request = ['food', 'sleep', 'activity', "tamagotchi"]
+get_request.each() do |act|
+  get('/' + act) do
+    eval('@tamagotchi = Tamagotchi.all[0]
+    @tamagotchi.time_passes(Tamagotchi.time_interval())
+    Tamagotchi.set_last_active()
+    if @tamagotchi.is_alive?()
+      @name = @tamagotchi.name()
+      @food = @tamagotchi.food()
+      @sleep = @tamagotchi.sleep()
+      @activity = @tamagotchi.activity()
+      Tamagotchi.reset_all()
+      @tamagotchi.save()
+    else
+    @name = @tamagotchi.name()
+    end
+    erb(:tamagotchi)')
+  end
+end
