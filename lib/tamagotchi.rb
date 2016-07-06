@@ -1,4 +1,5 @@
 class Tamagotchi
+  attr_reader(:name, :food, :sleep, :activity)
   @@all_tamagotchi = []
   @@last_active = nil
   define_method(:initialize) do |name|
@@ -29,22 +30,6 @@ class Tamagotchi
     (now - @@last_active) / 1
   end
 
-  define_method(:name) do
-    @name
-  end
-
-  define_method(:food) do
-    @food
-  end
-
-  define_method(:sleep) do
-    @sleep
-  end
-
-  define_method(:activity) do
-    @activity
-  end
-
   define_method(:is_alive?) do
     if @food <= 0 || @sleep <= 0 || @activity <= 0
       return false
@@ -53,16 +38,9 @@ class Tamagotchi
     end
   end
 
-  define_method(:set_food_level) do |food|
-    @food += food
-  end
-
-  define_method(:set_sleep_level) do |sleep|
-    @sleep += sleep
-  end
-
-  define_method(:set_activity_level) do |activity|
-    @activity += activity
+  actions = ['food', 'sleep', 'activity']
+  actions.each() do |act|
+    eval('define_method(:set_' + act + '_level) do |' + act + '|' + '@' + act + '+=' + act + ' end')
   end
 
   define_method(:time_passes) do |interval|
